@@ -1,6 +1,6 @@
 class NaoEncontrado extends Error {
   constructor() {
-    super("Receita não encontrada!");
+    super("Não encontrada!");
     this.name = "NaoEncontrado";
     this.idErro = 0;
   }

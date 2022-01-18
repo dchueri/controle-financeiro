@@ -8,8 +8,9 @@ const DadosNaoFornecidos = require("./erros/DadosNaoFornecidos");
 
 app.use(bodyParser.json());
 
-const router = require("./rotas/receitas");
-app.use("/receitas", router);
+const router = [require("./rotas/receitas"), require("./rotas/despesas")];
+app.use("/receitas", router[0]);
+app.use("/despesas", router[1]);
 
 app.use((erro, req, res, next) => {
   let status = 500;

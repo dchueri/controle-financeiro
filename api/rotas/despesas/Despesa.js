@@ -1,9 +1,9 @@
-const TabelaReceita = require("./TabelaReceita");
+const TabelaDespesa = require("./TabelaDespesa");
 const CampoInvalido = require("../../erros/CampoInvalido");
 const DadosNaoFornecidos = require("../../erros/DadosNaoFornecidos");
 
 
-class Receita {
+class Despesa {
   constructor({ id, descricao, valor, dataCriacao, dataAtualizacao }) {
     this.id = id;
     this.descricao = descricao;
@@ -14,7 +14,7 @@ class Receita {
 
   async criar() {
     this.validar();
-    const resultado = await TabelaReceita.inserir({
+    const resultado = await TabelaDespesa.inserir({
       descricao: this.descricao,
       valor: this.valor,
     });
@@ -25,15 +25,15 @@ class Receita {
   }
 
   async carregar() {
-    const receitaEncontrada = await TabelaReceita.pegarPorId(this.id);
-    this.descricao = receitaEncontrada.descricao;
-    this.valor = receitaEncontrada.valor;
-    this.dataCriacao = receitaEncontrada.dataCriacao;
-    this.dataAtualizacao = receitaEncontrada.dataAtualizacao;
+    const despesaEncontrada = await TabelaDespesa.pegarPorId(this.id);
+    this.descricao = despesaEncontrada.descricao;
+    this.valor = despesaEncontrada.valor;
+    this.dataCriacao = despesaEncontrada.dataCriacao;
+    this.dataAtualizacao = despesaEncontrada.dataAtualizacao;
   }
 
   async atualizar() {
-    await TabelaReceita.pegarPorId(this.id);
+    await TabelaDespesa.pegarPorId(this.id);
     const dadosParaAtualizar = {};
 
     if (typeof this.descricao === "string" && this.descricao.length > 0) {
@@ -48,11 +48,11 @@ class Receita {
       throw new DadosNaoFornecidos();
     }
 
-    await TabelaReceita.atualizar(this.id, dadosParaAtualizar);
+    await TabelaDespesa.atualizar(this.id, dadosParaAtualizar);
   }
 
   remover() {
-    return TabelaReceita.remover(this.id);
+    return TabelaDespesa.remover(this.id);
   }
 
   validar() {
@@ -66,4 +66,4 @@ class Receita {
   }
 }
 
-module.exports = Receita;
+module.exports = Despesa;
