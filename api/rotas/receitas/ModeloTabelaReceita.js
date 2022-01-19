@@ -9,6 +9,10 @@ const colunas = {
     valor: {
         type: Sequelize.DOUBLE,
         allowNull: false
+    },
+    data: {
+        type: Sequelize.DATEONLY,
+        allowNull: false
     }
 }
 
@@ -16,8 +20,8 @@ const opcoes = {
     freezeTableName: true,
     tableName: 'receitas',
     timestamps: true,
-    createdAt: 'dataCriacao',
-    updatedAt: 'dataAtualizacao'
+    createdAt: false,
+    updatedAt: false
 }
 
 module.exports = bd.define('receita', colunas, opcoes)

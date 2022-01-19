@@ -8,7 +8,7 @@ router.get("/", async (req, res) => {
   if (resultados.length > 0) {
     res.send(JSON.stringify(resultados));
   } else {
-    res.send(JSON.stringify("Você não possui despesas"));
+    res.send('{ "mensagem": "Você não possui despesas!" }');
   }
 });
 
